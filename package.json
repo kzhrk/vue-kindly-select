@@ -1,0 +1,49 @@
+{
+  "name": "vue-kindly-select",
+  "version": "0.0.1",
+  "author": "Kazuhiro Kobayashi <info@kzhrk.com> (https://blog.kzhrk.com)",
+  "bugs": {
+    "url": "https://github.com/kzhrk/vue-kindly-select/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.6.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-vue": "^4.7.1",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "vue": "^2.5.17",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/kzhrk/vue-kindly-select#readme",
+  "keywords": [],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kzhrk/vue-kindly-select.git"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production npm run webpack:pro",
+    "demo": "NODE_ENV=production webpack --config ./docs/webpack.config.js",
+    "eslint": "eslint --fix --ext .js,.vue ./src",
+    "start": "NODE_ENV=development npm run webpack:dev",
+    "test": "jest",
+    "webpack:dev": "webpack-dev-server --config ./docs/webpack.config.js",
+    "webpack:pro": "webpack --display-used-exports"
+  }
+}

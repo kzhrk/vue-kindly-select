@@ -1,0 +1,101 @@
+html, body {
+  height: 100%;
+}
+
+kindly-select {
+  display: none;
+}
+
+.kindly-select {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+.kindly-select-button {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  padding: 0 30px;
+  border: none;
+  border-radius: 0;
+  background: #eee;
+  border: 1px solid #ccc;
+  color: #333;
+  transition: all .3s ease;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  appearance: button;
+  outline: none;
+}
+.kindly-select-button:before,
+.kindly-select-button:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+}
+.kindly-select-button:before {
+  margin-top: -8px;
+  transform: rotateZ(-135deg);
+}
+.kindly-select-button:after {
+  margin-top: 0;
+  transform: rotateZ(45deg);
+}
+.kindly-select-button[aria-expanded="true"]:before,
+.kindly-select-button[aria-expanded="true"]:after {
+  display: none;
+}
+
+.kindly-select-el {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  opacity: 0;
+}
+.kindly-select-el[aria-hidden="true"] {
+  display: none;
+}
+
+.kindly-select-list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #ccc;
+}
+.kindly-select-list[aria-hidden=true] {
+  display: none;
+}
+.kindly-option {
+  height: 50px;
+  padding: 8px 15px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.kindly-option.is-selected {
+  background-color: #ddd;
+}
+.kindly-option:first-child {
+  border-top: none;
+}
+.kindly-option:hover {
+  background-color: #eee;
+}
+.kindly-option i {
+  font-style: normal;
+}
