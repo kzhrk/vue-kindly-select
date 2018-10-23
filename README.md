@@ -1,5 +1,9 @@
 # A vue component to render accessible select
 
+[![Build Status](https://travis-ci.org/kzhrk/vue-kindly-select.svg?branch=master)](https://travis-ci.org/kzhrk/vue-kindly-select)
+[![Coverage Status](https://coveralls.io/repos/github/kzhrk/vue-kindly-select/badge.svg?branch=master)](https://coveralls.io/github/kzhrk/vue-kindly-select?branch=master)
+[![npm version](https://badge.fury.io/js/vue-kindly-select.svg)](https://badge.fury.io/js/vue-kindly-select)
+
 This package contains a Vue component to render accesible select.
 
 [Demo](https://kzhrk.github.com/vue-kindly-select/)

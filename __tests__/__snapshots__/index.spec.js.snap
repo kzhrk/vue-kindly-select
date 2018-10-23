@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`vue-kindly-select can mount 1`] = `
+"
+      <div id=\\"app\\"><div class=\\"kindly-select\\"><button type=\\"button\\" role=\\"button\\" aria-haspopup=\\"listbox\\" class=\\"kindly-select-button\\"></button> <select name=\\"select1\\" aria-hidden=\\"true\\" aria-haspopup=\\"listbox\\" class=\\"kindly-select-el\\"><option value=\\"1\\">UK</option><option value=\\"2\\">USA</option><option value=\\"3\\">PRC</option></select> <ul aria-hidden=\\"true\\" role=\\"listbox\\" tabindex=\\"-1\\" class=\\"kindly-select-list\\"><li id=\\"select1--1\\" role=\\"option\\" class=\\"kindly-option\\"><i>🇬🇧</i>United Kingdom
+          </li> <li id=\\"select1--2\\" role=\\"option\\" class=\\"kindly-option\\"><i>🇺🇸</i>United States of America
+          </li> <li id=\\"select1--3\\" role=\\"option\\" class=\\"kindly-option\\"><i>🇨🇳</i>People's Republic of China
+          </li></ul></div></div>
+    "
+`;

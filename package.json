@@ -7,15 +7,22 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-async-generator-functions": "^7.1.0",
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@storybook/vue": "^4.0.4",
+    "babel-core": "^7.0.0-bridge",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "babel-preset-vue": "^2.0.2",
+    "coveralls": "^3.0.2",
     "css-loader": "^1.0.0",
     "eslint": "^5.6.1",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-vue": "^4.7.1",
     "jest": "^23.6.0",
+    "jest-vue-preprocessor": "^1.4.0",
     "prettier": "^1.14.3",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "vue": "^2.5.17",
@@ -30,7 +37,26 @@
     "LICENSE"
   ],
   "homepage": "https://github.com/kzhrk/vue-kindly-select#readme",
-  "keywords": [],
+  "jest": {
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.vue$": "<rootDir>/node_modules/jest-vue-preprocessor"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ]
+  },
+  "jsnext:main": "src/index.js",
+  "keywords": [
+    "component",
+    "select",
+    "vue",
+    "vuejs"
+  ],
   "license": "MIT",
   "main": "./dist/index.js",
   "repository": {
@@ -38,12 +64,15 @@
     "url": "git+https://github.com/kzhrk/vue-kindly-select.git"
   },
   "scripts": {
-    "build": "NODE_ENV=production npm run webpack:pro",
-    "demo": "NODE_ENV=production webpack --config ./docs/webpack.config.js",
-    "eslint": "eslint --fix --ext .js,.vue ./src",
-    "start": "NODE_ENV=development npm run webpack:dev",
+    "build": "npm run webpack:pro",
+    "demo": "npm run webpack:demo",
+    "lint": "eslint --fix --ext .js,.vue ./src ./__tests__",
+    "pretest": "npm run lint",
+    "start": "npm run webpack:dev",
+    "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "jest",
-    "webpack:dev": "webpack-dev-server --config ./docs/webpack.config.js",
-    "webpack:pro": "webpack --display-used-exports"
+    "webpack:demo": "NODE_ENV=production webpack --config ./docs/webpack.config.js",
+    "webpack:dev": "NODE_ENV=development webpack-dev-server --config ./docs/webpack.config.js",
+    "webpack:pro": "NODE_ENV=production webpack --display-used-exports"
   }
 }

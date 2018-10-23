@@ -1,14 +1,15 @@
 <template>
   <div class="kindly-select">
-    <button 
+    <button
       ref="button"
       :aria-expanded="expanded"
       type="button"
-      class="kindly-select-button" 
+      class="kindly-select-button"
       role="button"
       aria-haspopup="listbox"
       @click="handleClick"
-      v-text="buttonText"/>
+      v-text="buttonText"
+    />
     <select
       :name="name"
       v-model="selected"
@@ -24,13 +25,14 @@
         v-text="option.text"
       />
     </select>
-    <ul 
+    <ul
       ref="list"
       :aria-activedescendant="activedescendant"
-      class="kindly-select-list" 
+      :aria-hidden="hidden"
+      class="kindly-select-list"
       role="listbox"
-      tabindex="-1" 
-      aria-hidden="true">
+      tabindex="-1"
+    >
       <slot />
     </ul>
   </div>
@@ -54,7 +56,8 @@ export default {
       selected: null,
       expanded: false,
       isSp: util.isSp,
-      activedescendant: null
+      activedescendant: null,
+      hidden: 'true'
     };
   },
 
@@ -73,11 +76,11 @@ export default {
       this.hideList();
     });
 
-    document.body.addEventListener(
-      'click',
-      this.handleClickBody.bind(this),
-      false
-    );
+    document.body.addEventListener('click', this.handleClickBody, false);
+  },
+
+  destroyed() {
+    document.body.removeEventListener('click', this.handleClickBody, false);
   },
 
   methods: {
@@ -101,17 +104,15 @@ export default {
       }
     },
     toggleList() {
-      this.$refs.list.getAttribute('aria-hidden') === 'true'
-        ? this.showList()
-        : this.hideList();
+      this.hidden === 'true' ? this.showList() : this.hideList();
     },
     showList() {
       this.expanded = true;
-      this.$refs.list.setAttribute('aria-hidden', 'false');
+      this.hidden = 'false';
     },
     hideList() {
       this.expanded = false;
-      this.$refs.list.setAttribute('aria-hidden', 'true');
+      this.hidden = 'true';
     }
   }
 };

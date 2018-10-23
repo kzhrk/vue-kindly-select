@@ -1,7 +1,7 @@
 <template>
-  <li 
+  <li
     :id="computedId"
-    :class="{'is-selected': selected}"
+    :class="{ 'is-selected': selected }"
     class="kindly-option"
     role="option"
     @click="handleClick"
