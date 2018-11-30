@@ -21,6 +21,8 @@ module.exports = Object.assign(
       },
     },
 
-    externals: {}
+    externals: {
+      vue: 'Vue',
+    }  
   }
 );
