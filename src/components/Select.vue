@@ -40,17 +40,17 @@
 
 <script>
 import * as util from '../helpers/util';
+import {createComponent, onDestroyed, ref, value, computed, watch, reactive, onMounted, onUnmounted} from 'vue-function-api'
 
-export default {
+export default createComponent({
   props: {
     name: {
       type: String,
       default: ''
     }
   },
-
-  data() {
-    return {
+  setup(props, context) {
+    const state = reactive({
       options: [],
       buttonText: null,
       selected: null,
@@ -58,62 +58,75 @@ export default {
       isSp: util.isSp,
       activedescendant: null,
       hidden: 'true'
-    };
-  },
+    })
 
-  created() {
-    this.options = this.$children;
-
-    this.$on('clickList', data => {
-      this.buttonText = data.text;
-      this.selected = data.value;
-      this.activedescendant = data.computedId;
-
-      [...this.options].forEach(option => {
-        option.selected = option.value === data.value;
-      });
-
-      this.hideList();
-    });
-
-    document.body.addEventListener('click', this.handleClickBody, false);
-  },
-
-  destroyed() {
-    document.body.removeEventListener('click', this.handleClickBody, false);
-  },
-
-  methods: {
-    handleChange(e) {
-      this.buttonText =
+    function handleChange(e) {
+      state.buttonText =
         e.target.options[e.target.options.selectedIndex].textContent;
-    },
-    handleClick() {
-      this.toggleList();
-    },
-    handleClickBody(e) {
+    }
+
+    function handleClick() {
+      toggleList();
+    }
+
+    function handleClickBody(e) {
       const parentsNodes = util.getParents(e.target);
 
       if (
-        !parentsNodes.includes(this.$refs.list) &&
-        !parentsNodes.includes(this.$refs.button) &&
-        e.target !== this.$refs.list &&
-        e.target !== this.$refs.button
+        !parentsNodes.includes(context.refs.button) &&
+        !parentsNodes.includes(context.refs.list) &&
+        e.target !== context.refs.button &&
+        e.target !== context.refs.list
       ) {
-        this.hideList();
+        hideList();
       }
-    },
-    toggleList() {
-      this.hidden === 'true' ? this.showList() : this.hideList();
-    },
-    showList() {
-      this.expanded = true;
-      this.hidden = 'false';
-    },
-    hideList() {
-      this.expanded = false;
-      this.hidden = 'true';
+    }
+
+    function toggleList() {
+      state.hidden === 'true' ? showList() : hideList();
+    }
+
+    function showList() {
+      state.expanded = true;
+      state.hidden = 'false';
+    }
+
+    function hideList() {
+      state.expanded = false;
+      state.hidden = 'true';
+    }
+
+    onMounted(() => {
+      state.options = context.children;
+
+      context.on('clickList', data => {
+        context.buttonText = data.text;
+        context.selected = data.value;
+        context.activedescendant = data.computedId;
+
+        [...context.options].forEach(option => {
+          option.selected = option.value === data.value;
+        });
+
+        hideList();
+      });
+
+      document.body.addEventListener('click', handleClickBody, false);
+    })
+
+    onDestroyed(() => {
+      document.body.removeEventListener('click', handleClickBody, false);
+    })
+
+    return {
+      state,
+      handleChange,
+      handleClick,
+      handleClickBody,
+      toggleList,
+      showList,
+      hideList
     }
   }
-};
+});
 </script>

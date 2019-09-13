@@ -74,5 +74,8 @@
     "webpack:demo": "NODE_ENV=production webpack --config ./docs/webpack.config.js",
     "webpack:dev": "NODE_ENV=development webpack-dev-server --config ./docs/webpack.config.js",
     "webpack:pro": "NODE_ENV=production webpack --display-used-exports"
+  },
+  "dependencies": {
+    "vue-function-api": "^3.0.0-beta.0"
   }
 }
